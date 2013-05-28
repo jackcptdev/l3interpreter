@@ -1,0 +1,6 @@
+def f(a,b,c){
+
+	a = "hello";
+	if (a > 2) {a = 3;}
+}
+a = 3;
