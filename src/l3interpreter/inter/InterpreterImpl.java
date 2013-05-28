@@ -23,16 +23,17 @@ import l3interpreter.antlr.L3Parser.DoLabelContext;
 import l3interpreter.antlr.L3Parser.ExpressionListLabelContext;
 import l3interpreter.antlr.L3Parser.FalseLabelContext;
 import l3interpreter.antlr.L3Parser.FastConditionLabelContext;
+import l3interpreter.antlr.L3Parser.FloatLabelContext;
 import l3interpreter.antlr.L3Parser.FunctionDefContext;
 import l3interpreter.antlr.L3Parser.FunctionDefLabelContext;
 import l3interpreter.antlr.L3Parser.FunctionParameterDefLabelContext;
 import l3interpreter.antlr.L3Parser.IdentifierLabelContext;
 import l3interpreter.antlr.L3Parser.IfLabelContext;
 import l3interpreter.antlr.L3Parser.IndexVisitLabelContext;
+import l3interpreter.antlr.L3Parser.IntegerLabelContext;
 import l3interpreter.antlr.L3Parser.IsEqualLabelContext;
 import l3interpreter.antlr.L3Parser.LiteralLabelContext;
 import l3interpreter.antlr.L3Parser.MulDivModLabelContext;
-import l3interpreter.antlr.L3Parser.NumberLabelContext;
 import l3interpreter.antlr.L3Parser.OrLabelContext;
 import l3interpreter.antlr.L3Parser.ParExpressoinLabelContext;
 import l3interpreter.antlr.L3Parser.PrimaryLabelContext;
@@ -155,9 +156,15 @@ public class InterpreterImpl extends L3BaseVisitor<Identity> {
 	}
 
 	@Override
-	public Identity visitNumberLabel(NumberLabelContext ctx) {
+	public Identity visitFloatLabel(FloatLabelContext ctx) {
 		// TODO Auto-generated method stub
-		return super.visitNumberLabel(ctx);
+		return super.visitFloatLabel(ctx);
+	}
+
+	@Override
+	public Identity visitIntegerLabel(IntegerLabelContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitIntegerLabel(ctx);
 	}
 
 	@Override

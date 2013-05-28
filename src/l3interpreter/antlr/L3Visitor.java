@@ -36,8 +36,6 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitProg(L3Parser.ProgContext ctx);
 
-	T visitNumberLabel(L3Parser.NumberLabelContext ctx);
-
 	T visitAndLabel(L3Parser.AndLabelContext ctx);
 
 	T visitFastConditionLabel(L3Parser.FastConditionLabelContext ctx);
@@ -54,9 +52,13 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitMulDivModLabel(L3Parser.MulDivModLabelContext ctx);
 
+	T visitFloatLabel(L3Parser.FloatLabelContext ctx);
+
 	T visitFunctionDefLabel(L3Parser.FunctionDefLabelContext ctx);
 
 	T visitTrueLabel(L3Parser.TrueLabelContext ctx);
+
+	T visitIntegerLabel(L3Parser.IntegerLabelContext ctx);
 
 	T visitSemiLabel(L3Parser.SemiLabelContext ctx);
 

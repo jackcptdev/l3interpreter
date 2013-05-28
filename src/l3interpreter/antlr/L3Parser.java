@@ -19,13 +19,13 @@ public class L3Parser extends Parser {
 		SEMI=11, BREAK=12, CONTINUE=13, TRUE=14, FALSE=15, COMA=16, LB=17, RB=18, 
 		MUL=19, DIV=20, MOD=21, ADD=22, SUB=23, LT=24, GT=25, LET=26, GET=27, 
 		AND=28, EQ=29, NEQ=30, OR=31, QM=32, CL=33, ASSIGN=34, Identifier=35, 
-		WS=36, STRING=37, LETTER=38, NUMBER=39, COMMENT=40, LINE_COMMENT=41;
+		WS=36, STRING=37, LETTER=38, INTEGER=39, FLOAT=40, COMMENT=41, LINE_COMMENT=42;
 	public static final String[] tokenNames = {
 		"<INVALID>", "'{'", "'}'", "'def'", "'('", "')'", "'if'", "'else'", "'while'", 
 		"'do'", "'return'", "';'", "'break'", "'continue'", "'true'", "'false'", 
 		"','", "'['", "']'", "'*'", "'/'", "'%'", "'+'", "'-'", "'<'", "'>'", 
 		"'<='", "'>='", "'&&'", "'=='", "'!='", "'||'", "'?'", "':'", "'='", "Identifier", 
-		"WS", "STRING", "LETTER", "NUMBER", "COMMENT", "LINE_COMMENT"
+		"WS", "STRING", "LETTER", "INTEGER", "FLOAT", "COMMENT", "LINE_COMMENT"
 	};
 	public static final int
 		RULE_prog = 0, RULE_finalstatment = 1, RULE_functionDef = 2, RULE_formalParameterDecls = 3, 
@@ -82,7 +82,7 @@ public class L3Parser extends Parser {
 			setState(27);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LC) | (1L << DEF) | (1L << LA) | (1L << IF) | (1L << WHILE) | (1L << DO) | (1L << RETURN) | (1L << SEMI) | (1L << BREAK) | (1L << CONTINUE) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << NUMBER))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LC) | (1L << DEF) | (1L << LA) | (1L << IF) | (1L << WHILE) | (1L << DO) | (1L << RETURN) | (1L << SEMI) | (1L << BREAK) | (1L << CONTINUE) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << INTEGER) | (1L << FLOAT))) != 0)) {
 				{
 				{
 				setState(24); finalstatment();
@@ -159,7 +159,8 @@ public class L3Parser extends Parser {
 			case FALSE:
 			case Identifier:
 			case STRING:
-			case NUMBER:
+			case INTEGER:
+			case FLOAT:
 				_localctx = new StatementLabelContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
@@ -329,7 +330,7 @@ public class L3Parser extends Parser {
 			setState(57);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LC) | (1L << LA) | (1L << IF) | (1L << WHILE) | (1L << DO) | (1L << RETURN) | (1L << SEMI) | (1L << BREAK) | (1L << CONTINUE) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << NUMBER))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LC) | (1L << LA) | (1L << IF) | (1L << WHILE) | (1L << DO) | (1L << RETURN) | (1L << SEMI) | (1L << BREAK) | (1L << CONTINUE) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << INTEGER) | (1L << FLOAT))) != 0)) {
 				{
 				{
 				setState(54); statement();
@@ -526,7 +527,7 @@ public class L3Parser extends Parser {
 				setState(80); match(RETURN);
 				setState(82);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LA) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << NUMBER))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LA) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << INTEGER) | (1L << FLOAT))) != 0)) {
 					{
 					setState(81); expression(0);
 					}
@@ -556,7 +557,8 @@ public class L3Parser extends Parser {
 			case FALSE:
 			case Identifier:
 			case STRING:
-			case NUMBER:
+			case INTEGER:
+			case FLOAT:
 				_localctx = new StatementExpressionLabelContext(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
@@ -1003,7 +1005,7 @@ public class L3Parser extends Parser {
 						setState(137); match(LA);
 						setState(139);
 						_la = _input.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LA) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << NUMBER))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LA) | (1L << TRUE) | (1L << FALSE) | (1L << Identifier) | (1L << STRING) | (1L << INTEGER) | (1L << FLOAT))) != 0)) {
 							{
 							setState(138); expressionList();
 							}
@@ -1155,7 +1157,8 @@ public class L3Parser extends Parser {
 			case TRUE:
 			case FALSE:
 			case STRING:
-			case NUMBER:
+			case INTEGER:
+			case FLOAT:
 				_localctx = new LiteralLabelContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
@@ -1203,12 +1206,12 @@ public class L3Parser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class NumberLabelContext extends LiteralContext {
-		public TerminalNode NUMBER() { return getToken(L3Parser.NUMBER, 0); }
-		public NumberLabelContext(LiteralContext ctx) { copyFrom(ctx); }
+	public static class IntegerLabelContext extends LiteralContext {
+		public TerminalNode INTEGER() { return getToken(L3Parser.INTEGER, 0); }
+		public IntegerLabelContext(LiteralContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof L3Visitor ) return ((L3Visitor<? extends T>)visitor).visitNumberLabel(this);
+			if ( visitor instanceof L3Visitor ) return ((L3Visitor<? extends T>)visitor).visitIntegerLabel(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1229,39 +1232,55 @@ public class L3Parser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class FloatLabelContext extends LiteralContext {
+		public TerminalNode FLOAT() { return getToken(L3Parser.FLOAT, 0); }
+		public FloatLabelContext(LiteralContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof L3Visitor ) return ((L3Visitor<? extends T>)visitor).visitFloatLabel(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 
 	public final LiteralContext literal() throws RecognitionException {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_literal);
 		try {
-			setState(167);
+			setState(168);
 			switch (_input.LA(1)) {
-			case NUMBER:
-				_localctx = new NumberLabelContext(_localctx);
+			case INTEGER:
+				_localctx = new IntegerLabelContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(163); match(NUMBER);
+				setState(163); match(INTEGER);
+				}
+				break;
+			case FLOAT:
+				_localctx = new FloatLabelContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(164); match(FLOAT);
 				}
 				break;
 			case TRUE:
 				_localctx = new TrueLabelContext(_localctx);
-				enterOuterAlt(_localctx, 2);
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(164); match(TRUE);
+				setState(165); match(TRUE);
 				}
 				break;
 			case FALSE:
 				_localctx = new FalseLabelContext(_localctx);
-				enterOuterAlt(_localctx, 3);
+				enterOuterAlt(_localctx, 4);
 				{
-				setState(165); match(FALSE);
+				setState(166); match(FALSE);
 				}
 				break;
 			case STRING:
 				_localctx = new StringLabelContext(_localctx);
-				enterOuterAlt(_localctx, 4);
+				enterOuterAlt(_localctx, 5);
 				{
-				setState(166); match(STRING);
+				setState(167); match(STRING);
 				}
 				break;
 			default:
@@ -1311,7 +1330,7 @@ public class L3Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\2\3+\u00ac\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4"+
+		"\2\3,\u00ad\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4"+
 		"\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\3\2\7\2\34\n\2\f\2\16\2\37\13"+
 		"\2\3\2\3\2\3\3\3\3\5\3%\n\3\3\4\3\4\3\4\3\4\5\4+\n\4\3\4\3\4\3\4\3\5\3"+
 		"\5\3\5\7\5\63\n\5\f\5\16\5\66\13\5\3\6\3\6\7\6:\n\6\f\6\16\6=\13\6\3\6"+
@@ -1321,11 +1340,11 @@ public class L3Parser extends Parser {
 		"\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n"+
 		"\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\5\n\u008e\n\n\3\n\7\n\u0091\n\n\f"+
 		"\n\16\n\u0094\13\n\3\13\3\13\3\13\7\13\u0099\n\13\f\13\16\13\u009c\13"+
-		"\13\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00a4\n\f\3\r\3\r\3\r\3\r\5\r\u00aa\n"+
-		"\r\3\r\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\6\3\25\27\3\30\31\3\32\35"+
-		"\3\37 \u00bf\2\35\3\2\2\2\4$\3\2\2\2\6&\3\2\2\2\b/\3\2\2\2\n\67\3\2\2"+
+		"\13\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00a4\n\f\3\r\3\r\3\r\3\r\3\r\5\r\u00ab"+
+		"\n\r\3\r\2\16\2\4\6\b\n\f\16\20\22\24\26\30\2\6\3\25\27\3\30\31\3\32\35"+
+		"\3\37 \u00c1\2\35\3\2\2\2\4$\3\2\2\2\6&\3\2\2\2\b/\3\2\2\2\n\67\3\2\2"+
 		"\2\f_\3\2\2\2\16a\3\2\2\2\20e\3\2\2\2\22g\3\2\2\2\24\u0095\3\2\2\2\26"+
-		"\u00a3\3\2\2\2\30\u00a9\3\2\2\2\32\34\5\4\3\2\33\32\3\2\2\2\34\37\3\2"+
+		"\u00a3\3\2\2\2\30\u00aa\3\2\2\2\32\34\5\4\3\2\33\32\3\2\2\2\34\37\3\2"+
 		"\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36 \3\2\2\2\37\35\3\2\2\2 !\7\1\2\2!"+
 		"\3\3\2\2\2\"%\5\f\7\2#%\5\6\4\2$\"\3\2\2\2$#\3\2\2\2%\5\3\2\2\2&\'\7\5"+
 		"\2\2\'(\7%\2\2(*\7\6\2\2)+\5\b\5\2*)\3\2\2\2*+\3\2\2\2+,\3\2\2\2,-\7\7"+
@@ -1358,10 +1377,10 @@ public class L3Parser extends Parser {
 		"\2\u009c\u009a\3\2\2\2\u009d\u009e\7\6\2\2\u009e\u009f\5\22\n\2\u009f"+
 		"\u00a0\7\7\2\2\u00a0\u00a4\3\2\2\2\u00a1\u00a4\5\30\r\2\u00a2\u00a4\7"+
 		"%\2\2\u00a3\u009d\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a3\u00a2\3\2\2\2\u00a4"+
-		"\27\3\2\2\2\u00a5\u00aa\7)\2\2\u00a6\u00aa\7\20\2\2\u00a7\u00aa\7\21\2"+
-		"\2\u00a8\u00aa\7\'\2\2\u00a9\u00a5\3\2\2\2\u00a9\u00a6\3\2\2\2\u00a9\u00a7"+
-		"\3\2\2\2\u00a9\u00a8\3\2\2\2\u00aa\31\3\2\2\2\20\35$*\64;FT_\u008d\u0090"+
-		"\u0092\u009a\u00a3\u00a9";
+		"\27\3\2\2\2\u00a5\u00ab\7)\2\2\u00a6\u00ab\7*\2\2\u00a7\u00ab\7\20\2\2"+
+		"\u00a8\u00ab\7\21\2\2\u00a9\u00ab\7\'\2\2\u00aa\u00a5\3\2\2\2\u00aa\u00a6"+
+		"\3\2\2\2\u00aa\u00a7\3\2\2\2\u00aa\u00a8\3\2\2\2\u00aa\u00a9\3\2\2\2\u00ab"+
+		"\31\3\2\2\2\20\35$*\64;FT_\u008d\u0090\u0092\u009a\u00a3\u00aa";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {

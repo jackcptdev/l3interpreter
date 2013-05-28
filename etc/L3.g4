@@ -42,65 +42,67 @@ QM : '?';
 CL : ':';
 ASSIGN: '=';
 
-finalstatment:statement
-             |functionDef
+finalstatment:statement             #statementLabel
+             |functionDef           #functionDefLabel
              ;
 
 functionDef: 'def' Identifier '(' formalParameterDecls? ')' block;
-formalParameterDecls: Identifier (',' Identifier)* ;
+formalParameterDecls: Identifier (',' Identifier)*     #functionParameterDefLabel
+                    ;
 
-block: '{' statement* '}';
+block: '{' statement* '}';      
      
-statement: block
-         | 'if' parExpression statement ('else' statement)?
-         | 'while' parExpression statement
-         | 'do' statement 'while' parExpression ';'
-         | 'return' expression? ';'
-         | 'break' ';'
-         | 'continue' ';'
-         | statementExpression ';'
-         | ';'
+statement: block                #blockLabel
+         | 'if' parExpression statement ('else' statement)? #ifLabel
+         | 'while' parExpression statement  #whileLabel
+         | 'do' statement 'while' parExpression ';' #doLabel
+         | 'return' expression? ';' #returnLabel
+         | 'break' ';'  #breakLabel
+         | 'continue' ';'   #continueLabel
+         | statementExpression ';' #statementExpressionLabel
+         | ';'  #semiLabel
          ;
 
-parExpression: '(' expression ')';
+parExpression: '(' expression ')'  #parExpressoinLabel ;
 statementExpression : expression;
 
 expression:
-       primary
-       | expression '[' expression ']'
-       | expression '(' expressionList? ')'
-       | expression op=('*'|'/'|'%') expression
-       | expression op=('+'|'-') expression
-       | expression op=('<=' | '>=' | '>' | '<') expression
-       | expression op=('==' | '!=') expression
-       | expression '&&' expression
-       | expression '||' expression
-       | expression '?' expression ':' expression
-       | expression '='<assoc=right> expression
+       primary                                          #primaryLabel
+       | expression '[' expression ']'                  #indexVisitLabel
+       | expression '(' expressionList? ')'             #callFunctionLabel
+       | expression op=('*'|'/'|'%') expression         #mulDivModLabel
+       | expression op=('+'|'-') expression             #addSubLabel
+       | expression op=('<=' | '>=' | '>' | '<') expression #conditionLabel
+       | expression op=('==' | '!=') expression         #isEqualLabel
+       | expression '&&' expression         #andLabel
+       | expression '||' expression         #orLabel
+       | expression '?' expression ':' expression #fastConditionLabel
+       | expression '='<assoc=right> expression  #assignLabel
        ;
 
-expressionList : expression (',' expression)*;
+expressionList : expression (',' expression)*  #expressionListLabel;
 
-primary: '(' expression ')'
-         | literal
-         | Identifier
+primary: '(' expression ')'     #brackerExpressionLabel
+         | literal              #literalLabel
+         | Identifier           #identifierLabel
          ;
 
-literal : NUMBER
-        | 'true'
-        | 'false'
-        | STRING
+literal : INTEGER           #integerLabel
+        | FLOAT             #floatLabel
+        | 'true'            #trueLabel
+        | 'false'           #falseLabel
+        | STRING            #stringLabel
         ;
 
-Identifier: LETTER ( LETTER | DIGIT )*;
+Identifier: LETTER ( LETTER | DIGIT )* ;
 
 
 WS  :  [ \r\t\n\r]+ -> channel(HIDDEN);
 STRING: '"' (ESC | .)*? '"';
 LETTER: [a-z|A-Z|_];
-NUMBER : DIGIT+ '.' DIGIT+
-       | DIGIT+
-       ;
+INTEGER : DIGIT+;
+FLOAT : DIGIT+ '.' DIGIT+;
+       
 COMMENT:   '/*' .*? '*/' -> channel(HIDDEN);
 
 LINE_COMMENT : '//' ~[\r\n]* ('\r'? '\n' | EOF) -> channel(HIDDEN);
