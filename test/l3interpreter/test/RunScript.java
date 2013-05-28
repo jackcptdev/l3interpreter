@@ -9,6 +9,7 @@ import java.io.InputStream;
 import l3interpreter.antlr.L3Lexer;
 import l3interpreter.antlr.L3Parser;
 import l3interpreter.inter.InterpreterImpl;
+import l3interpreter.inter.InterpreterParserLexer;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -26,7 +27,9 @@ public class RunScript {
 			CommonTokenStream tokens = new CommonTokenStream(l1lexer);
 			L3Parser l1parser = new L3Parser(tokens);
 			ParseTree tree = l1parser.prog();
+			InterpreterParserLexer prepare = new InterpreterParserLexer();
 			InterpreterImpl itp = new InterpreterImpl(System.out, System.err);
+			prepare.visit(tree);
 			itp.visit(tree);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

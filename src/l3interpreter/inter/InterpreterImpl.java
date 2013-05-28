@@ -60,7 +60,7 @@ public class InterpreterImpl extends L3BaseVisitor<Identity> {
 	public Identity visitFunctionDef(FunctionDefContext ctx) {
 		// TODO Auto-generated method stub
 		this.stdOut.println("Visit function def.");
-		int i = 1;
+		this.errOut.println("Error Output.");
 		return super.visitFunctionDef(ctx);
 	}
 
