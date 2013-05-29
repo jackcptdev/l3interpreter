@@ -10,3 +10,13 @@ def f(a,b,c){
 	
 }
 a = 3;
+
+import jack.l1.Person;
+
+var b = new Person("jack","M",25);
+
+println(b.age);
+
+b.println();
+
+b.addAge(1);

@@ -4,6 +4,8 @@ import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.Token;
 
 public interface L3Visitor<T> extends ParseTreeVisitor<T> {
+	T visitCreatorLabel(L3Parser.CreatorLabelContext ctx);
+
 	T visitFunctionDef(L3Parser.FunctionDefContext ctx);
 
 	T visitStatementLabel(L3Parser.StatementLabelContext ctx);
@@ -20,11 +22,11 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitParExpressoinLabel(L3Parser.ParExpressoinLabelContext ctx);
 
-	T visitPrintLabel(L3Parser.PrintLabelContext ctx);
-
 	T visitFunctionParameterDefLabel(L3Parser.FunctionParameterDefLabelContext ctx);
 
 	T visitLiteralLabel(L3Parser.LiteralLabelContext ctx);
+
+	T visitPackagePathLabel(L3Parser.PackagePathLabelContext ctx);
 
 	T visitContinueLabel(L3Parser.ContinueLabelContext ctx);
 
@@ -48,6 +50,12 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitIsEqualLabel(L3Parser.IsEqualLabelContext ctx);
 
+	T visitCallMethodLabel(L3Parser.CallMethodLabelContext ctx);
+
+	T visitNewLabel(L3Parser.NewLabelContext ctx);
+
+	T visitVarDefLabel(L3Parser.VarDefLabelContext ctx);
+
 	T visitIdentifierLabel(L3Parser.IdentifierLabelContext ctx);
 
 	T visitBrackerExpressionLabel(L3Parser.BrackerExpressionLabelContext ctx);
@@ -60,6 +68,8 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitTrueLabel(L3Parser.TrueLabelContext ctx);
 
+	T visitCallMemberLabel(L3Parser.CallMemberLabelContext ctx);
+
 	T visitIntegerLabel(L3Parser.IntegerLabelContext ctx);
 
 	T visitAssignLabel(L3Parser.AssignLabelContext ctx);
@@ -70,6 +80,8 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitAddSubLabel(L3Parser.AddSubLabelContext ctx);
 
+	T visitImportLabel(L3Parser.ImportLabelContext ctx);
+
 	T visitPrimaryLabel(L3Parser.PrimaryLabelContext ctx);
 
 	T visitWhileLabel(L3Parser.WhileLabelContext ctx);
@@ -77,6 +89,8 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 	T visitDoLabel(L3Parser.DoLabelContext ctx);
 
 	T visitOrLabel(L3Parser.OrLabelContext ctx);
+
+	T visitInnerClassNameLabel(L3Parser.InnerClassNameLabelContext ctx);
 
 	T visitCallFunctionLabel(L3Parser.CallFunctionLabelContext ctx);
 }

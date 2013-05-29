@@ -5,6 +5,8 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3Visitor<T> {
+	@Override public T visitCreatorLabel(L3Parser.CreatorLabelContext ctx) { return visitChildren(ctx); }
+
 	@Override public T visitFunctionDef(L3Parser.FunctionDefContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitStatementLabel(L3Parser.StatementLabelContext ctx) { return visitChildren(ctx); }
@@ -21,11 +23,11 @@ public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3V
 
 	@Override public T visitParExpressoinLabel(L3Parser.ParExpressoinLabelContext ctx) { return visitChildren(ctx); }
 
-	@Override public T visitPrintLabel(L3Parser.PrintLabelContext ctx) { return visitChildren(ctx); }
-
 	@Override public T visitFunctionParameterDefLabel(L3Parser.FunctionParameterDefLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitLiteralLabel(L3Parser.LiteralLabelContext ctx) { return visitChildren(ctx); }
+
+	@Override public T visitPackagePathLabel(L3Parser.PackagePathLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitContinueLabel(L3Parser.ContinueLabelContext ctx) { return visitChildren(ctx); }
 
@@ -49,6 +51,12 @@ public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3V
 
 	@Override public T visitIsEqualLabel(L3Parser.IsEqualLabelContext ctx) { return visitChildren(ctx); }
 
+	@Override public T visitCallMethodLabel(L3Parser.CallMethodLabelContext ctx) { return visitChildren(ctx); }
+
+	@Override public T visitNewLabel(L3Parser.NewLabelContext ctx) { return visitChildren(ctx); }
+
+	@Override public T visitVarDefLabel(L3Parser.VarDefLabelContext ctx) { return visitChildren(ctx); }
+
 	@Override public T visitIdentifierLabel(L3Parser.IdentifierLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitBrackerExpressionLabel(L3Parser.BrackerExpressionLabelContext ctx) { return visitChildren(ctx); }
@@ -61,6 +69,8 @@ public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3V
 
 	@Override public T visitTrueLabel(L3Parser.TrueLabelContext ctx) { return visitChildren(ctx); }
 
+	@Override public T visitCallMemberLabel(L3Parser.CallMemberLabelContext ctx) { return visitChildren(ctx); }
+
 	@Override public T visitIntegerLabel(L3Parser.IntegerLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitAssignLabel(L3Parser.AssignLabelContext ctx) { return visitChildren(ctx); }
@@ -71,6 +81,8 @@ public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3V
 
 	@Override public T visitAddSubLabel(L3Parser.AddSubLabelContext ctx) { return visitChildren(ctx); }
 
+	@Override public T visitImportLabel(L3Parser.ImportLabelContext ctx) { return visitChildren(ctx); }
+
 	@Override public T visitPrimaryLabel(L3Parser.PrimaryLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitWhileLabel(L3Parser.WhileLabelContext ctx) { return visitChildren(ctx); }
@@ -78,6 +90,8 @@ public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3V
 	@Override public T visitDoLabel(L3Parser.DoLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitOrLabel(L3Parser.OrLabelContext ctx) { return visitChildren(ctx); }
+
+	@Override public T visitInnerClassNameLabel(L3Parser.InnerClassNameLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitCallFunctionLabel(L3Parser.CallFunctionLabelContext ctx) { return visitChildren(ctx); }
 }
