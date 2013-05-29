@@ -41,7 +41,10 @@ OR : '||';
 QM : '?';
 CL : ':';
 ASSIGN: '=';
-PRINT: 'print';
+NEW: 'new';
+IMPORT: 'import';
+DOT : '.';
+VAR : 'var';
 
 finalstatment:statement             #statementLabel
              |functionDef           #functionDefLabel
@@ -50,6 +53,15 @@ finalstatment:statement             #statementLabel
 functionDef: 'def' Identifier '(' formalParameterDecls? ')' block;
 formalParameterDecls: Identifier (',' Identifier)*     #functionParameterDefLabel
                     ;
+
+innerClassName : Identifier ( '.' Identifier)* #innerClassNameLabel;
+
+
+creator : innerClassName '(' expressionList? ')' #creatorLabel
+        ;
+
+packagePath : Identifier ('.' Identifier)* #packagePathLabel;
+
 
 block: '{' statement* '}';      
      
@@ -60,7 +72,9 @@ statement: block                #blockLabel
          | 'return' expression? ';' #returnLabel
          | 'break' ';'  #breakLabel
          | 'continue' ';'   #continueLabel
-         | 'print' expression ';' #printLabel
+         | 'new' creator ';'   #newLabel
+         | 'var' Identifier ('=' expression )? #varDefLabel
+         | 'import' packagePath         #importLabel
          | statementExpression ';' #statementExpressionLabel
          | ';'  #semiLabel
          ;
@@ -72,6 +86,8 @@ expression:
        primary                                          #primaryLabel
        | expression '[' expression ']'                  #indexVisitLabel
        | expression '(' expressionList? ')'             #callFunctionLabel
+       | expression '.' Identifier '(' expressionList? ')' #callMethodLabel
+       | expression '.' Identifier              #callMemberLabel
        | expression op=('*'|'/'|'%') expression         #mulDivModLabel
        | expression op=('+'|'-') expression             #addSubLabel
        | expression op=('<=' | '>=' | '>' | '<') expression #conditionLabel
