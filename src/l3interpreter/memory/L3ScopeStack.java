@@ -3,6 +3,8 @@ package l3interpreter.memory;
 import java.util.ArrayList;
 import java.util.List;
 
+import l3interpreter.inter.IdentifierAlreadyExistException;
+import l3interpreter.inter.IdentifierNotExistException;
 import l3interpreter.inter.Unit;
 
 public class L3ScopeStack<T extends Unit> {
@@ -49,10 +51,27 @@ public class L3ScopeStack<T extends Unit> {
 		return null;
 	}
 
-	public static void main(String[] args) {
+	public void updateValue(T v) throws IdentifierNotExistException {
+		T old = addressInStack(v.identifier);
+		if (old == null) {
+			throw new IdentifierNotExistException(v.identifier);
+		}
+		old.updateValue(v);
+	}
+
+	public void createNewIdentitier(T v) throws IdentifierAlreadyExistException {
+		if (isIdentifierInCurrentFrame(v.identifier)) {
+			throw new IdentifierAlreadyExistException(v.identifier);
+		}
+		this.currentFrame.refreshPut(v);
+	}
+
+	public static void main(String[] args) throws IdentifierAlreadyExistException {
 		L3ScopeStack<Unit> s = new L3ScopeStack<Unit>();
 		System.out.println(s.currentFrame);
 		System.out.println(s.currentFrame);
+		s.createNewIdentitier(new Unit("a"));
+		s.createNewIdentitier(new Unit("a"));
 		s.exitFrame();
 		System.out.println(s.currentFrame);
 	}

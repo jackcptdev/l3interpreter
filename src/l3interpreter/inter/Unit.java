@@ -6,4 +6,8 @@ public class Unit {
 	public Unit(String identifier){
 		this.identifier = identifier;
 	}
+	
+	public void updateValue(Unit U){
+		
+	}
 }
