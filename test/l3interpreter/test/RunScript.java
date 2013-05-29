@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 import l3interpreter.antlr.L3Lexer;
 import l3interpreter.antlr.L3Parser;
+import l3interpreter.inter.ErrorStrategy;
 import l3interpreter.inter.InterpreterImpl;
 import l3interpreter.inter.InterpreterParserLexer;
 
@@ -26,6 +27,7 @@ public class RunScript {
 			L3Lexer l1lexer = new L3Lexer(charInput);
 			CommonTokenStream tokens = new CommonTokenStream(l1lexer);
 			L3Parser l1parser = new L3Parser(tokens);
+			l1parser.setErrorHandler(new ErrorStrategy());
 			ParseTree tree = l1parser.prog();
 			InterpreterParserLexer prepare = new InterpreterParserLexer();
 			InterpreterImpl itp = new InterpreterImpl(System.out, System.err);
