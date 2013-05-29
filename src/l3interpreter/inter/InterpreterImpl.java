@@ -38,6 +38,7 @@ import l3interpreter.antlr.L3Parser.MulDivModLabelContext;
 import l3interpreter.antlr.L3Parser.OrLabelContext;
 import l3interpreter.antlr.L3Parser.ParExpressoinLabelContext;
 import l3interpreter.antlr.L3Parser.PrimaryLabelContext;
+import l3interpreter.antlr.L3Parser.PrintLabelContext;
 import l3interpreter.antlr.L3Parser.ProgContext;
 import l3interpreter.antlr.L3Parser.ReturnLabelContext;
 import l3interpreter.antlr.L3Parser.SemiLabelContext;
@@ -61,11 +62,7 @@ public class InterpreterImpl extends L3BaseVisitor<Identity> {
   public Identity visitFunctionDef(FunctionDefContext ctx) {
     // TODO Auto-generated method stub
     this.stdOut.println("Visit function def.");
-    this.errOut.println("Error Output.");
-    int i = 1;
-    if (i == 1) {
-      throw new L3RuntimeException("FUNCTION", null, null, ctx);
-    }
+    
     return super.visitFunctionDef(ctx);
   }
 
@@ -357,4 +354,11 @@ public class InterpreterImpl extends L3BaseVisitor<Identity> {
     return super.toString();
   }
 
+  @Override
+  public Identity visitPrintLabel(PrintLabelContext ctx) {
+    // TODO Auto-generated method stub
+    return super.visitPrintLabel(ctx);
+  }
+
+  
 }

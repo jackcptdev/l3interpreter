@@ -21,6 +21,8 @@ public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3V
 
 	@Override public T visitParExpressoinLabel(L3Parser.ParExpressoinLabelContext ctx) { return visitChildren(ctx); }
 
+	@Override public T visitPrintLabel(L3Parser.PrintLabelContext ctx) { return visitChildren(ctx); }
+
 	@Override public T visitFunctionParameterDefLabel(L3Parser.FunctionParameterDefLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitLiteralLabel(L3Parser.LiteralLabelContext ctx) { return visitChildren(ctx); }
@@ -61,9 +63,9 @@ public class L3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements L3V
 
 	@Override public T visitIntegerLabel(L3Parser.IntegerLabelContext ctx) { return visitChildren(ctx); }
 
-	@Override public T visitSemiLabel(L3Parser.SemiLabelContext ctx) { return visitChildren(ctx); }
-
 	@Override public T visitAssignLabel(L3Parser.AssignLabelContext ctx) { return visitChildren(ctx); }
+
+	@Override public T visitSemiLabel(L3Parser.SemiLabelContext ctx) { return visitChildren(ctx); }
 
 	@Override public T visitConditionLabel(L3Parser.ConditionLabelContext ctx) { return visitChildren(ctx); }
 

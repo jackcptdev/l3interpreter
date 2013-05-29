@@ -41,6 +41,7 @@ OR : '||';
 QM : '?';
 CL : ':';
 ASSIGN: '=';
+PRINT: 'print';
 
 finalstatment:statement             #statementLabel
              |functionDef           #functionDefLabel
@@ -59,6 +60,7 @@ statement: block                #blockLabel
          | 'return' expression? ';' #returnLabel
          | 'break' ';'  #breakLabel
          | 'continue' ';'   #continueLabel
+         | 'print' expression ';' #printLabel
          | statementExpression ';' #statementExpressionLabel
          | ';'  #semiLabel
          ;

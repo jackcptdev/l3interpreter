@@ -1,6 +1,12 @@
 def f(a,b,c){
 
-	a = "hello";
+	a = "hello \"";
 	if (a > 2) {a = 3;}
+	
+	while( a > 2 && a < 10){
+		a = a + 1;
+		print a;
+	}
+	
 }
 a = 3;

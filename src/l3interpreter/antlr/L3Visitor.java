@@ -20,6 +20,8 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitParExpressoinLabel(L3Parser.ParExpressoinLabelContext ctx);
 
+	T visitPrintLabel(L3Parser.PrintLabelContext ctx);
+
 	T visitFunctionParameterDefLabel(L3Parser.FunctionParameterDefLabelContext ctx);
 
 	T visitLiteralLabel(L3Parser.LiteralLabelContext ctx);
@@ -60,9 +62,9 @@ public interface L3Visitor<T> extends ParseTreeVisitor<T> {
 
 	T visitIntegerLabel(L3Parser.IntegerLabelContext ctx);
 
-	T visitSemiLabel(L3Parser.SemiLabelContext ctx);
-
 	T visitAssignLabel(L3Parser.AssignLabelContext ctx);
+
+	T visitSemiLabel(L3Parser.SemiLabelContext ctx);
 
 	T visitConditionLabel(L3Parser.ConditionLabelContext ctx);
 
